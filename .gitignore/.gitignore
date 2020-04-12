@@ -1,0 +1,12 @@
+# DEPS
+/node_modules
+
+# PRODUCTION
+/public
+
+# MISC
+.DS_Store
+npm-debug.log*
+
+# IDE
+.vscode
