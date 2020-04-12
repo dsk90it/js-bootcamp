@@ -1,0 +1,12 @@
+# DEPS
+*/node_modules/
+
+# OS
+.DS_Store
+thumbs.db
+
+# LOGS
+npm-debug.log*
+
+# IDE
+.vscode
