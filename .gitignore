@@ -1,6 +1,9 @@
 # DEPS
 */node_modules/
 
+# PRODUCTION
+*/public/scripts
+
 # OS
 .DS_Store
 thumbs.db
