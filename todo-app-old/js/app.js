@@ -35,7 +35,6 @@ addForm.addEventListener('submit', (e) => {
         renderTodos(todos, filters)
         e.target.elements.addInput.value = ''
     }
-    
 })
 
 hideCheckbox.addEventListener('change', (e) => {
