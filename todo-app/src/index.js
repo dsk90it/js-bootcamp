@@ -1,33 +1,40 @@
 import { renderTodos } from './views'
-import { createTodo, saveTodos } from './todos'
-
-const filterInput = document.querySelector('#filter-input')
-const addForm = document.querySelector('form')
-const hideCheckbox = document.querySelector('#hide-completed')
+import { setFilters } from './filters'
+import { createTodo, loadTodos } from './todos'
 
 renderTodos()
 
-// Set up search text handler
-filterInput.addEventListener('input', () => {
+// Search todo
+document.querySelector('#filter-input').addEventListener('input', (e) => {
+    setFilters({
+        searchText: e.target.value
+    })
+    renderTodos()
 })
 
-// Set up checkbox handler
-hideCheckbox.addEventListener('change', () => {
-})
-
-// Set up form submission handler
-addForm.addEventListener('submit', (e) => {
+// Add todo
+document.querySelector('form').addEventListener('submit', (e) => {
+    const text = e.target.elements.addInput.value.trim()
     e.preventDefault()
-    let newTodo = e.target.elements.addInput.value.trim()
 
-    if(newTodo.length > 0){
-        createTodo(newTodo)
-        saveTodos()
+    if(text.length > 0){
+        createTodo(text)
         renderTodos()
         e.target.elements.addInput.value = ''
     }
 })
 
-// Bonus: Add a watcher for local storage
-window.addEventListener('storage', (e) =>{
+// Toggle todo
+document.querySelector('#hide-completed').addEventListener('change', (e) => {
+    setFilters({
+        hideCompleted: e.target.checked
+    })
+    renderTodos()
+})
+
+window.addEventListener('storage', (e) => {
+    if(e.key === "todo"){
+        loadTodos()
+        renderTodos()
+    }
 })
